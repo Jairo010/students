@@ -3,8 +3,9 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SpeakersService } from '../services/api_serivices/speakers/speakers.service';
+import { ISpeakers } from '../interfaces/speakers.interface';
 
-export interface ISpeakers {
+export interface ISpeakerst {
   id?: number;
   name: string;
   lastName: string;
@@ -39,7 +40,7 @@ export class SpeakersEditFormComponent implements OnInit {
 
   loadForm() {
     this.group = new FormGroup({
-      id: new FormControl({ value: this.data?.id, disabled: true }),
+      card: new FormControl({ value: this.data?.card, disabled: true }),
       name: new FormControl(this.data?.name, Validators.required),
       lastName: new FormControl(this.data?.lastName, Validators.required),
       email: new FormControl(this.data?.email, [Validators.required, Validators.email]),

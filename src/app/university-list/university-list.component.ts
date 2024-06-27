@@ -107,6 +107,9 @@ export class UniversityListComponent {
   }
 
   reloadPage() {
-    window.location.reload();
+    this.records = [];
+    this.field = [];
+    this.data = [];
+    this.loadUniversities();
   }
 }
