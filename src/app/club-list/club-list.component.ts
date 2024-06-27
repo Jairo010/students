@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Importa MatSnackBar
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./club-list.component.css'],
     imports: [CommonModule, MatButtonModule, MatIconModule, SharedModule]
 })
-export class ClubsListComponent {
+export class ClubsListComponent implements OnInit{
     private clubsService = inject(ClubsService);
 
     data: any = []
@@ -38,9 +38,8 @@ export class ClubsListComponent {
     constructor(
         private dialog: MatDialog,
         private router: Router,
-        private snackBar: MatSnackBar // Agrega MatSnackBar al constructor
+        private snackBar: MatSnackBar
     ) {
-        this.loadClubs();
     }
 
     ngOnInit(): void{
@@ -109,7 +108,10 @@ export class ClubsListComponent {
     }
 
     reloadPage() {
-        window.location.reload();
+        this.records = [];
+        this.field = [];
+        this.data = [];
+        this.loadClubs();
     }
     
 }

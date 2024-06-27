@@ -95,7 +95,7 @@ export class TransactionsListComponent implements OnInit {
         this.snackBar.open('Transacción registrada exitosamente', 'Cerrar', {
           duration: 3000,
         });
-        this.loadTransactions();
+        this.reloadPage();
       }
     });
   }
@@ -106,10 +106,17 @@ export class TransactionsListComponent implements OnInit {
         this.snackBar.open('Transacción eliminada correctamente', 'Cerrar', {
           duration: 3000,
         });
-        this.loadTransactions();
+        this.reloadPage();
       }, (error) => {
         console.error('Error al eliminar la transacción:', error);
       });
     }
+  }
+
+  reloadPage() {
+    this.records = [];
+    this.field = [];
+    this.data = [];
+    this.loadTransactions();
   }
 }

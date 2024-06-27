@@ -42,7 +42,6 @@ export class TalksListComponent {
   field: any[] = [];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar) {
-    this.loadTalks();
   }
 
   loadTalks() {
@@ -111,6 +110,9 @@ export class TalksListComponent {
   }
 
   reloadPage() {
-    window.location.reload();
+    this.records = [];
+    this.field = [];
+    this.data = [];
+    this.loadTalks();
   }
 }

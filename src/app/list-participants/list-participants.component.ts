@@ -124,6 +124,9 @@ export class ListParticipantsComponent implements OnInit {
   }
 
   reloadPage() {
-    window.location.reload();
+    this.records = [];
+    this.field = [];
+    this.data = [];
+    this.loadParticipants();
   }
 }

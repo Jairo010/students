@@ -46,7 +46,6 @@ export class GroupsListComponent implements OnInit{
   field: any[] = [];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar) {
-    this.loadGroups();
   }
 
   loadGroups() {
@@ -110,6 +109,9 @@ export class GroupsListComponent implements OnInit{
   }
 
   reloadPage() {
-    window.location.reload();
+    this.records = [];
+    this.field = [];
+    this.data = [];
+    this.loadGroups();
   }
 }

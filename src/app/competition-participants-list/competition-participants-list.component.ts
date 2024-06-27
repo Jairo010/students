@@ -50,7 +50,7 @@ export class CompetitionParticipantsListComponent implements OnInit {
     console.log('Component initialized');
     this.loadCompetitions();
     this.loadAllParticipants();
-    this.loadAllGroups(); // Agregamos la carga de todos los grupos al inicio
+    this.loadAllGroups(); 
   }
 
   loadCompetitions() {

@@ -109,6 +109,9 @@ export class TasksListComponent {
   }
 
   reloadPage() {
-    window.location.reload();
+    this.records = [];
+    this.field = [];
+    this.data = [];
+    this.loadTasks();
   }
 }
