@@ -1,0 +1,49 @@
+<body class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+      <h2 class="text-2xl font-bold mb-4 text-center">{{ title }} Transacción</h2>
+      <form id="transactionForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" [formGroup]="transactionForm" (ngSubmit)="save()">
+        <div class="mb-4">
+          <label for="amount" class="block text-gray-700 font-bold mb-2">Monto:</label>
+          <input type="number" id="amount" formControlName="amount" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched" class="text-red-600">Monto es requerido</div>
+        </div>
+        <div class="mb-4">
+          <label for="typeRegister" class="block text-gray-700 font-bold mb-2">Tipo de Registro:</label>
+          <input type="text" id="typeRegister" formControlName="typeRegister" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="transactionForm.get('typeRegister')?.invalid && transactionForm.get('typeRegister')?.touched" class="text-red-600">Tipo de Registro es requerido</div>
+        </div>
+        <div class="mb-4">
+          <label for="typeTransaction" class="block text-gray-700 font-bold mb-2">Tipo de Transacción:</label>
+          <input type="text" id="typeTransaction" formControlName="typeTransaction" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="transactionForm.get('typeTransaction')?.invalid && transactionForm.get('typeTransaction')?.touched" class="text-red-600">Tipo de Transacción es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="idCompetition" class="block text-gray-700 font-bold mb-2">Concurso:</label>
+            <select id="idCompetition" formControlName="idCompetition" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+              <option *ngFor="let competition of competitions" [value]="competition.id">{{ competition.Tipo_Concurso }}</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="idGroup" class="block text-gray-700 font-bold mb-2">Grupo:</label>
+            <select formControlName="idGroup" id="idGroup" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+              <option *ngFor="let group of groups" [value]="group.Id_Grupo">{{ group.Nombre_Grupo }}</option>
+            </select>
+          </div>
+        <div class="mb-4">
+          <label for="total" class="block text-gray-700 font-bold mb-2">Total:</label>
+          <input type="number" id="total" formControlName="total" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="transactionForm.get('total')?.invalid && transactionForm.get('total')?.touched" class="text-red-600">Total es requerido</div>
+        </div>
+        <div class="mb-4">
+          <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
+          <textarea id="description" formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+          <div *ngIf="transactionForm.get('description')?.invalid && transactionForm.get('description')?.touched" class="text-red-600">Descripción es requerida</div>
+        </div>
+        <div class="mb-4">
+          <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" [disabled]="transactionForm.invalid">Guardar</button>
+          <button type="button" class="w-full bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700 mt-4" (click)="closeForm()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </body>
+  

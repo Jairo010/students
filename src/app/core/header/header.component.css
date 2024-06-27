@@ -1,0 +1,14 @@
+.profile{
+    height: 100%;
+}
+mat-toolbar img{
+    width: 40px;
+    max-height: 40px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+mat-toolbar{
+    background-color: rgb(199,229,239);
+    border-bottom: 1px solid black;
+}

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Seleccionar Integrante</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Integrante</mat-label>
+    <mat-select [(ngModel)]="selectedMember">
+      <mat-option *ngFor="let member of members" [value]="member">{{ member.nombre }} {{ member.apellido }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="selectedMember" cdkFocusInitial>Aceptar</button>
+</div>

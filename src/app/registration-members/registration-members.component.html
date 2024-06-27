@@ -1,0 +1,88 @@
+<body class="bg-gray-100 p-4">
+  <form method="POST" id="miFormulario" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="register" (ngSubmit)="onSignUp()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registro de Integrantes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="correo" class="block text-gray-700 font-bold mb-2">Correo:</label>
+        <input type="text" formControlName="email" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('email')?.invalid && (register.get('email')?.dirty || register.get('email')?.touched)">
+          {{ getErrorMessage('email') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="clave" class="block text-gray-700 font-bold mb-2">Clave:</label>
+        <input type="password" formControlName="password" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('password')?.invalid && (register.get('password')?.dirty || register.get('password')?.touched)">
+          {{ getErrorMessage('password') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="cedula" class="block text-gray-700 font-bold mb-2">Cedula:</label>
+        <input type="number" formControlName="card" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('card')?.invalid && (register.get('card')?.dirty || register.get('card')?.touched)">
+          {{ getErrorMessage('card') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+        <input type="text" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('name')?.invalid && (register.get('name')?.dirty || register.get('name')?.touched)">
+          {{ getErrorMessage('name') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="apellido" class="block text-gray-700 font-bold mb-2">Apellido:</label>
+        <input type="text" formControlName="lastName" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('lastName')?.invalid && (register.get('lastName')?.dirty || register.get('lastName')?.touched)">
+          {{ getErrorMessage('lastName') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="carrera" class="block text-gray-700 font-bold mb-2">Carrera:</label>
+        <select formControlName="major" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="2">Telecomunicaciones</option>
+          <option value="3">Tecnologías de la información</option>
+          <option value="1">Software</option>
+          <option value="4">Industrial</option>
+          <option value="5">Automatización y robótica</option>
+        </select>
+        <span class="text-red-500 text-sm" *ngIf="register.get('major')?.invalid && (register.get('major')?.dirty || register.get('major')?.touched)">
+          {{ getErrorMessage('major') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="semestre" class="block text-gray-700 font-bold mb-2">Semestre:</label>
+        <select formControlName="semester" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="Primero">Primero</option>
+          <option value="Segundo">Segundo</option>
+          <option value="Tercero">Tercero</option>
+          <option value="Cuarto">Cuarto</option>
+          <option value="Quinto">Quinto</option>
+          <option value="Sexto">Sexto</option>
+          <option value="Séptimo">Séptimo</option>
+          <option value="Octavo">Octavo</option>
+          <option value="Noveno">Noveno</option>
+        </select>
+        <span class="text-red-500 text-sm" *ngIf="register.get('semester')?.invalid && (register.get('semester')?.dirty || register.get('semester')?.touched)">
+          {{ getErrorMessage('semester') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="fecha" class="block text-gray-700 font-bold mb-2">Fecha de ingreso:</label>
+        <input type="date" id="fechaf" name="fechaf" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4 col-span-2">
+        <label for="miCombobox" class="block text-gray-700 font-bold mb-2">Rol:</label>
+        <select formControlName="rol" class="px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="1">Lider</option>
+          <option value="2">Colider</option>
+          <option value="3">Miembro</option>
+        </select>
+        <span class="text-red-500 text-sm" *ngIf="register.get('rol')?.invalid && (register.get('rol')?.dirty || register.get('rol')?.touched)">
+          {{ getErrorMessage('rol') }}
+        </span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="register.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</body>

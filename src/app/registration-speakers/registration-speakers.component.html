@@ -1,0 +1,57 @@
+<div class="bg-gray-100 p-4">
+  <form method="POST" id="speakerForm" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="speakers" (ngSubmit)="onSubmit()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registrar Ponente</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="card" class="block text-gray-700 font-bold mb-2">Cedula del ponente:</label>
+        <input type="number" id="card" formControlName="card" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('card')?.invalid && (speakers.get('card')?.dirty || speakers.get('card')?.touched)">
+          {{ getErrorMessage('card') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+        <input type="text" id="name" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('name')?.invalid && (speakers.get('name')?.dirty || speakers.get('name')?.touched)">
+          {{ getErrorMessage('name') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="lastName" class="block text-gray-700 font-bold mb-2">Apellido:</label>
+        <input type="text" id="lastName" formControlName="lastName" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('lastName')?.invalid && (speakers.get('lastName')?.dirty || speakers.get('lastName')?.touched)">
+          {{ getErrorMessage('lastName') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700 font-bold mb-2">Correo:</label>
+        <input type="email" id="email" formControlName="email" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('email')?.invalid && (speakers.get('email')?.dirty || speakers.get('email')?.touched)">
+          {{ getErrorMessage('email') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="phone" class="block text-gray-700 font-bold mb-2">Teléfono:</label>
+        <input type="tel" id="phone" formControlName="phone" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('phone')?.invalid && (speakers.get('phone')?.dirty || speakers.get('phone')?.touched)">
+          {{ getErrorMessage('phone') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="biography" class="block text-gray-700 font-bold mb-2">Biografía:</label>
+        <textarea id="biography" formControlName="biography" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('biography')?.invalid && (speakers.get('biography')?.dirty || speakers.get('biography')?.touched)">
+          {{ getErrorMessage('biography') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="topic" class="block text-gray-700 font-bold mb-2">Tema de la charla:</label>
+        <input type="text" id="topic" formControlName="topic" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="speakers.get('topic')?.invalid && (speakers.get('topic')?.dirty || speakers.get('topic')?.touched)">
+          {{ getErrorMessage('topic') }}
+        </span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="speakers.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</div>

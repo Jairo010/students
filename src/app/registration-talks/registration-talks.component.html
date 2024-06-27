@@ -1,0 +1,47 @@
+<div class="bg-gray-100 p-4">
+  <form method="POST" id="talkForm" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="talks" (ngSubmit)="onSubmit()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registrar Charla</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="topic" class="block text-gray-700 font-bold mb-2">Tema de la charla:</label>
+        <input type="text" id="topic" formControlName="topic" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="talks.get('topic')?.invalid && (talks.get('topic')?.dirty || talks.get('topic')?.touched)">
+          {{ getErrorMessage('topic') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="image" class="block text-gray-700 font-bold mb-2">URL de la imagen:</label>
+        <input type="text" id="image" formControlName="image" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="talks.get('image')?.invalid && (talks.get('image')?.dirty || talks.get('image')?.touched)">
+          {{ getErrorMessage('image') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="startDate" class="block text-gray-700 font-bold mb-2">Fecha de inicio:</label>
+        <input type="date" id="startDate" formControlName="startDate" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" [min]="minStartDate" (change)="updateEndDateMin()">
+        <span class="text-red-500 text-sm" *ngIf="talks.get('startDate')?.invalid && (talks.get('startDate')?.dirty || talks.get('startDate')?.touched)">
+          {{ getErrorMessage('startDate') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="endDate" class="block text-gray-700 font-bold mb-2">Fecha de finalización:</label>
+        <input type="date" id="endDate" formControlName="endDate" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" [min]="minEndDate">
+        <span class="text-red-500 text-sm" *ngIf="talks.get('endDate')?.invalid && (talks.get('endDate')?.dirty || talks.get('endDate')?.touched)">
+          {{ getErrorMessage('endDate') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="status" class="block text-gray-700 font-bold mb-2">Estado de la charla:</label>
+        <select id="status" formControlName="status" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="Pendiente">Pendiente</option>
+          <option value="En proceso">En proceso</option>
+          <option value="Finalizada">Finalizada</option>
+        </select>
+        <span class="text-red-500 text-sm" *ngIf="talks.get('status')?.invalid && (talks.get('status')?.dirty || talks.get('status')?.touched)">
+          {{ getErrorMessage('status') }}
+        </span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="talks.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</div>

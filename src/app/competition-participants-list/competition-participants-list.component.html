@@ -1,0 +1,42 @@
+<div>
+<div>
+  <h2>Grupos</h2>
+  <mat-form-field>
+    <mat-label>Select Group</mat-label>
+    <mat-select [(value)]="selectedGroup" (selectionChange)="onSelectGroup($event)">
+      <mat-option *ngFor="let group of groups" [value]="group">{{ group.Nombre_Grupo}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="selectedGroup">
+  <h2>Participants</h2>
+  <table mat-table [dataSource]="participants" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Cedula</th>
+      <td mat-cell *matCellDef="let participant">{{ participant.cedula }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let participant">{{ participant.nombre }}{{ participant.apellido }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Correo</th>
+      <td mat-cell *matCellDef="let participant">{{ participant.correo }}</td>
+    </ng-container>
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let participant">{{ participant.habilitado }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let participant">
+        <button mat-icon-button color="accent" (click)="deleteParticipant(participant.cedula)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

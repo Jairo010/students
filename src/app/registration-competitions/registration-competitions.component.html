@@ -1,0 +1,40 @@
+<body class="bg-gray-100 p-4">
+  <form method="POST" id="miFormulario" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="register" (ngSubmit)="onSignUp()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registro de Competencias</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="type" class="block text-gray-700 font-bold mb-2">Tipo de Concurso:</label>
+        <input type="text" id="type" formControlName="type" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('type')?.invalid && (register.get('type')?.dirty || register.get('type')?.touched)">
+          {{ getErrorMessage('type') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="numParticipants" class="block text-gray-700 font-bold mb-2">Número Máximo de Participantes:</label>
+        <input type="number" id="numParticipants" formControlName="numParticipants" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('numParticipants')?.invalid && (register.get('numParticipants')?.dirty || register.get('numParticipants')?.touched)">
+          {{ getErrorMessage('numParticipants') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="price" class="block text-gray-700 font-bold mb-2">Valor de Inscripción:</label>
+        <input type="number" id="price" formControlName="price" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="register.get('price')?.invalid && (register.get('price')?.dirty || register.get('price')?.touched)">
+          {{ getErrorMessage('price') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="status" class="block text-gray-700 font-bold mb-2">Estado:</label>
+        <select id="status" formControlName="status" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="">Seleccione un estado</option>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+        <span class="text-red-500 text-sm" *ngIf="register.get('status')?.invalid && (register.get('status')?.dirty || register.get('status')?.touched)">
+          {{ getErrorMessage('status') }}
+        </span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="register.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</body>

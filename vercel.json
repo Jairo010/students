@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/frontend_app/browser"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.+\\.js)",
+      "headers": { "Content-Type": "text/javascript" },
+      "dest": "/dist/frontend_app/browser/$1"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" },
+      "dest": "/dist/frontend_app/browser/index.html"
+    }
+  ]
+}

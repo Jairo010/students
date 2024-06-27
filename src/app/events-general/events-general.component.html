@@ -1,0 +1,96 @@
+<app-container>
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccionar Evento</mat-label>
+    <mat-select [(ngModel)]="selectedEvent" (selectionChange)="onEventChange($event)">
+      <mat-option *ngFor="let event of events" [value]="event">{{ event.Nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="selectedEvent">
+    <div style="display: flex; flex-direction: row;">
+      <div style="flex: 1; margin-right: 10px;">
+        <h2>Concursos</h2>
+        <mat-form-field appearance="fill">
+          <mat-label>Seleccionar Concurso</mat-label>
+          <mat-select [(ngModel)]="selectedCompetitionId">
+            <mat-option *ngFor="let competition of allCompetitions" [value]="competition.id">
+              {{ competition.Tipo_Concurso }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="assignCompetition()">Agregar Concurso</button>
+        <table mat-table [dataSource]="competitions" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let competition">{{ competition.id }}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Tipo de concurso</th>
+            <td mat-cell *matCellDef="let competition">{{ competition.Tipo_Concurso }}</td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Valor de Inscripcion</th>
+            <td mat-cell *matCellDef="let competition">{{ competition.Valor_Inscripcion }}</td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let competition">
+              <button mat-icon-button color="accent" (click)="deleteAssignedCompetition(competition.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator
+          [length]="totalCompetition"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          (page)="onPageChange($event)"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+
+      <div style="flex: 1;">
+        <h2>Charlas</h2>
+        <mat-form-field appearance="fill">
+          <mat-label>Seleccionar Charla</mat-label>
+          <mat-select [(ngModel)]="selectedTalkId">
+            <mat-option *ngFor="let talk of allTalks" [value]="talk.id_Charla">
+              {{ talk.Tema_Charla }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="assignTalk()">Agregar Charla</button>
+        <table mat-table [dataSource]="talks" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let talk">{{ talk.id_Charla }}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Tema</th>
+            <td mat-cell *matCellDef="let talk">{{ talk.Tema_Charla }}</td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let talk">{{ talk.Estado_Charla }}</td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let talk">
+              <button mat-icon-button color="accent" (click)="deleteAssignedTalk(talk.id_Charla)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator
+          [length]="totalTalks"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          (page)="onPageChange($event)"
+          showFirstLastButtons
+        ></mat-paginator>

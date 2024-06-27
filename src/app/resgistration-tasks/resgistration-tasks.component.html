@@ -1,0 +1,59 @@
+<body class="bg-gray-100 p-4">
+  <form method="POST" id="miFormulario" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="register" (ngSubmit)="onSubmit()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registro de Tareas</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <div class="mb-4">
+          <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+          <input type="text" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <span class="text-red-500 text-sm" *ngIf="register.get('name')?.invalid && (register.get('name')?.dirty || register.get('name')?.touched)">
+            {{ getErrorMessage('name') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="limitDate" class="block text-gray-700 font-bold mb-2">Fecha limite:</label>
+          <input type="date" formControlName="limitDate" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" [min]="minStartDate" (change)="updateEndDateMin()">
+          <span class="text-red-500 text-sm" *ngIf="register.get('limitDate')?.invalid && (register.get('limitDate')?.dirty || register.get('limitDate')?.touched)">
+            {{ getErrorMessage('limitDate') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="estate" class="block text-gray-700 font-bold mb-2">Estado:</label>
+          <select formControlName="state" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+            <option value="En curso">En curso</option>
+            <option value="Finalizado">Finalizado</option>
+          </select>
+          <span class="text-red-500 text-sm" *ngIf="register.get('state')?.invalid && (register.get('state')?.dirty || register.get('state')?.touched)">
+            {{ getErrorMessage('state') }}
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="mb-4">
+          <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
+          <textarea formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+          <span class="text-red-500 text-sm" *ngIf="register.get('description')?.invalid && (register.get('description')?.dirty || register.get('description')?.touched)">
+            {{ getErrorMessage('description') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="evidence" class="block text-gray-700 font-bold mb-2">Evidencia:</label>
+          <input type="text" formControlName="evidence" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <span class="text-red-500 text-sm" *ngIf="register.get('evidence')?.invalid && (register.get('evidence')?.dirty || register.get('evidence')?.touched)">
+            {{ getErrorMessage('evidence') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="project" class="block text-gray-700 font-bold mb-2">Proyecto:</label>
+          <select formControlName="idProject" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+            <option *ngFor="let project of projectData" [value]="project.id">{{ project.Nombre }}</option>
+          </select>
+          <span class="text-red-500 text-sm" *ngIf="register.get('idProject')?.invalid && (register.get('idProject')?.dirty || register.get('idProject')?.touched)">
+            {{ getErrorMessage('idProject') }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="register.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</body>

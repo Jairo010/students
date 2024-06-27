@@ -1,0 +1,35 @@
+<body class="bg-gray-100 p-4">
+  <form class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="group" (ngSubmit)="save()">
+    <h2 class="text-2xl font-bold mb-4 text-center">{{ title }} Tarea</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+        <input type="text" id="name" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4">
+        <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
+        <input type="text" id="description" formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4">
+        <label for="limitDate" class="block text-gray-700 font-bold mb-2">Fecha Límite:</label>
+        <input type="date" id="limitDate" formControlName="limitDate" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4">
+        <label for="state" class="block text-gray-700 font-bold mb-2">Estado:</label>
+        <input type="text" id="state" formControlName="state" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4">
+        <label for="evidence" class="block text-gray-700 font-bold mb-2">Evidencia:</label>
+        <input type="text" id="evidence" formControlName="evidence" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4">
+        <label for="idProject" class="block text-gray-700 font-bold mb-2">Proyecto:</label>        
+        <select formControlName="idProject" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option *ngFor="let project of projectData" [value]="project.id">{{ project.Nombre }}</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">Guardar</button>
+    <button type="button" class="w-full bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700 mt-4" (click)="closeForm()">Cerrar</button>
+  </form>
+</body>

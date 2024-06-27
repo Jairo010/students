@@ -1,0 +1,32 @@
+<div class="bg-gray-100 p-4">
+  <form method="POST" id="groupForm" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="grupos" (ngSubmit)="onSubmit()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registrar Grupo</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 font-bold mb-2">Nombre del grupo:</label>
+        <input type="text" id="name" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="grupos.get('name')?.invalid && (grupos.get('name')?.dirty || grupos.get('name')?.touched)">
+          {{ getErrorMessage('name') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
+        <input type="text" id="description" formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-500 text-sm" *ngIf="grupos.get('description')?.invalid && (grupos.get('description')?.dirty || grupos.get('description')?.touched)">
+          {{ getErrorMessage('description') }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <label for="status" class="block text-gray-700 font-bold mb-2">Habilitado:</label>
+        <select id="status" formControlName="status" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="true">Sí</option>
+          <option value="false">No</option>
+        </select>
+        <span class="text-red-500 text-sm" *ngIf="grupos.get('status')?.invalid && (grupos.get('status')?.dirty || grupos.get('status')?.touched)">
+          {{ getErrorMessage('status') }}
+        </span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="grupos.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</div>

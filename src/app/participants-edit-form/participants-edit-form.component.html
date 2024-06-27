@@ -1,0 +1,36 @@
+<body class="bg-gray-100 p-4">
+    <form id="participantForm" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="participantForm" (ngSubmit)="onSubmit()">
+      <h2 class="text-2xl font-bold mb-4 text-center">Editar Participante</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="mb-4">
+          <label for="card" class="block text-gray-700 font-bold mb-2">Cédula:</label>
+          <input type="text" id="card" formControlName="card" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="participantForm.get('card')?.invalid && participantForm.get('card')?.touched" class="text-red-600">Cédula es requerida</div>
+        </div>
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+          <input type="text" id="name" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="participantForm.get('name')?.invalid && participantForm.get('name')?.touched" class="text-red-600">Nombre es requerido</div>
+        </div>
+        <div class="mb-4">
+          <label for="lastName" class="block text-gray-700 font-bold mb-2">Apellido:</label>
+          <input type="text" id="lastName" formControlName="lastName" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="participantForm.get('lastName')?.invalid && participantForm.get('lastName')?.touched" class="text-red-600">Apellido es requerido</div>
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 font-bold mb-2">Correo:</label>
+          <input type="email" id="email" formControlName="email" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <div *ngIf="participantForm.get('email')?.invalid && participantForm.get('email')?.touched" class="text-red-600">Correo es requerido y debe ser válido</div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2">
+          <input type="checkbox" formControlName="status" class="mr-2">
+          Habilitado
+        </label>
+      </div>
+      <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" [disabled]="participantForm.invalid">Guardar</button>
+      <button type="button" class="w-full bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700 mt-4" (click)="onCancel()">Cancelar</button>
+    </form>
+  </body>
+  

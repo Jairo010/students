@@ -1,0 +1,29 @@
+<mat-nav-list fxLayout="column" fxLayoutAlign="space-between">
+    <div>
+      <ng-container *ngFor="let menu of listMenu">
+        <mat-list-item>
+          <button mat-icon-button [matMenuTriggerFor]="menu.subMenu && menu.subMenu.length > 0 ? subMenu : null">
+            <img [src]="menu.icono" alt="">
+            <span *ngIf="expanded">{{menu.title}}</span>
+          </button>
+          <a *ngIf="!menu.subMenu || menu.subMenu.length === 0" [routerLink]="menu.url"></a>
+          <mat-menu #subMenu="matMenu">
+            <ng-container *ngFor="let subMenu of menu.subMenu">
+              <button mat-menu-item [routerLink]="subMenu.url">
+                <img [src]="subMenu.icono" alt="">
+                <span>{{subMenu.title}}</span>
+              </button>
+            </ng-container>
+          </mat-menu>
+        </mat-list-item>
+      </ng-container>
+    </div>
+    <div>
+      <mat-list-item>
+        <button mat-icon color="accent" (click)="toggleExpanded()">
+          <mat-icon>{{expanded ? "arrow_back_ios" : "arrow_forward_ios"}}</mat-icon>
+        </button>
+      </mat-list-item>
+    </div>
+  </mat-nav-list>
+  

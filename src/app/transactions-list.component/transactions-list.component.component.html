@@ -1,0 +1,51 @@
+<app-container class="container">
+  <h1>Listado de Transacciones</h1>
+  <table mat-table [dataSource]="field" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>Monto</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.amount }}</td>
+    </ng-container>
+    <ng-container matColumnDef="typeRegister">
+      <th mat-header-cell *matHeaderCellDef>Tipo de Registro</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.typeRegister }}</td>
+    </ng-container>
+    <ng-container matColumnDef="typeTransaction">
+      <th mat-header-cell *matHeaderCellDef>Tipo de Transacción</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.typeTransaction }}</td>
+    </ng-container>
+    <ng-container matColumnDef="idCompetition">
+      <th mat-header-cell *matHeaderCellDef>Concurso</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.idCompetition }}</td>
+    </ng-container>
+    <ng-container matColumnDef="idGroup">
+      <th mat-header-cell *matHeaderCellDef>Grupo</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.idGroup }}</td>
+    </ng-container>
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.total }}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let transaction">{{ transaction.description }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let transaction">
+        <button mat-icon-button color="accent" (click)="openForm(transaction)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteTransaction(transaction.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</app-container>

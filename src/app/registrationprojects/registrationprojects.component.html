@@ -1,0 +1,49 @@
+<body class="bg-gray-100 p-4">
+  <form method="POST" id="miFormulario" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="register" (ngSubmit)="onSubmit()">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registro de Proyectos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <div class="mb-4">
+          <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+          <input type="text" formControlName="name" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <span class="text-red-500 text-sm" *ngIf="register.get('name')?.invalid && (register.get('name')?.dirty || register.get('name')?.touched)">
+            {{ getErrorMessage('name') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="descripcion" class="block text-gray-700 font-bold mb-2">Descripción:</label>
+          <textarea type="text" formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+          <span class="text-red-500 text-sm" *ngIf="register.get('description')?.invalid && (register.get('description')?.dirty || register.get('description')?.touched)">
+            {{ getErrorMessage('description') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="fecha" class="block text-gray-700 font-bold mb-2">Fecha de inicio:</label>
+          <input type="date" formControlName="startDate" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" [min]="minStartDate" (change)="updateEndDateMin()">
+          <span class="text-red-500 text-sm" *ngIf="register.get('startDate')?.invalid && (register.get('startDate')?.dirty || register.get('startDate')?.touched)">
+            {{ getErrorMessage('startDate') }}
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="mb-4">
+          <label for="fecha" class="block text-gray-700 font-bold mb-2">Fecha de Fin:</label>
+          <input type="date" formControlName="endDate" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" [min]="minEndDate">
+          <span class="text-red-500 text-sm" *ngIf="register.get('endDate')?.invalid && (register.get('endDate')?.dirty || register.get('endDate')?.touched)">
+            {{ getErrorMessage('endDate') }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="club" class="block text-gray-700 font-bold mb-2">Club:</label>
+          <select formControlName="club" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+            <option *ngFor="let club of clubsData" [value]="club.id">{{ club.Nombre }}</option>
+          </select>
+          <span class="text-red-500 text-sm" *ngIf="register.get('club')?.invalid && (register.get('club')?.dirty || register.get('club')?.touched)">
+            {{ getErrorMessage('club') }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="register.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
+  </form>
+</body>
