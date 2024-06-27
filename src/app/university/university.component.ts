@@ -44,7 +44,7 @@ export class UniversityComponent implements OnInit {
             duration: 3000, // Duración del mensaje en milisegundos
           });
           console.log('Universidad registrada con éxito', response);
-          this.router.navigate(['/universidades']);
+          this.router.navigate(['/university-list']);
         },
         error => {
           this.snackBar.open('Error al registrar la universidad', 'Cerrar', {

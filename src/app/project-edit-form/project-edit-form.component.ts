@@ -13,9 +13,9 @@ export interface IProjectDatat {
   id?: string;
   name: string;
   description: string;
-  dateStart: string;
-  dateEnd: string;
-  Club: string;
+  startDate: string;
+  endDate: string;
+  idClub: string;
 }
 
 @Component({

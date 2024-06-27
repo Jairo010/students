@@ -74,6 +74,7 @@ export class RegistrationParticipantCompetitionComponent implements OnInit {
             this.competitionsService.assignCompetition(Number(idCompetition), Number(idGroup)).subscribe(
               response => {
                 this.snackBar.open('Concurso asignado correctamente', 'Cerrar', { duration: 3000 });
+                this.router.navigate(['/']);
               },
               error => {
                 console.error('Error al asignar el concurso', error);

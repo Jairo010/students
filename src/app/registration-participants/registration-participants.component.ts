@@ -81,7 +81,7 @@ export class RegistrationParticipantsComponent implements OnInit {
         response => {
           console.log('Participant registered successfully', response);
           this.snackBar.open('Participante registrado correctamente', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/login']);
+          this.router.navigate(['/registrar-concurso']);
         },
         error => {
           console.error('Error registering participant', error);
@@ -145,30 +145,7 @@ export class RegistrationParticipantsComponent implements OnInit {
   }
 
   registrarConcurso() {
-    if (this.registerForm.valid) {
-      const newParticipant: IParticipants = {
-        card: this.registerForm.get('card')?.value || '',
-        name: this.registerForm.get('name')?.value || '',
-        lastName: this.registerForm.get('lastName')?.value || '',
-        email: this.registerForm.get('email')?.value || '',
-        document: this.registerForm.get('document')?.value || '',
-        idUniversity: this.registerForm.get('idUniversity')?.value || 0,
-        status: true
-      };
-
-      this.participantsService.createParticipant(newParticipant).subscribe(
-        response => {
-          console.log('Participant registered successfully', response);
-          this.snackBar.open('Participante registrado correctamente', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/registrar-concurso']);
-        },
-        error => {
-          console.error('Error registering participant', error);
-          this.snackBar.open('Error al registrar al participante, inténtelo nuevamente', 'Cerrar', { duration: 3000 });
-        }
-      );
-    } else {
-      this.showErrors();
-    }
+     this.router.navigate(['/registrar-concurso']);
+     
   }
 }

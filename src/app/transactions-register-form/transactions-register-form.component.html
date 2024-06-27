@@ -1,43 +1,45 @@
 <body class="bg-gray-100 p-4">
-  <form id="transactionForm" class="max-w-md mx-auto bg-white p-8 rounded shadow-md" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+  <form id="transactionForm" class="max-w-2xl mx-auto bg-white p-8 rounded shadow-md" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
     <h2 class="text-2xl font-bold mb-4 text-center">Registrar Transacción</h2>
-    <div class="mb-4">
-      <label for="amount" class="block text-gray-700 font-bold mb-2">Monto:</label>
-      <input type="number" id="amount" formControlName="amount" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-      <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched" class="text-red-600">{{ getErrorMessage('amount') }}</div>
-    </div>
-    <div class="mb-4">
-      <label for="typeRegister" class="block text-gray-700 font-bold mb-2">Tipo de Registro:</label>
-      <input type="text" id="typeRegister" formControlName="typeRegister" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-      <div *ngIf="transactionForm.get('typeRegister')?.invalid && transactionForm.get('typeRegister')?.touched" class="text-red-600">{{ getErrorMessage('typeRegister') }}</div>
-    </div>
-    <div class="mb-4">
-      <label for="typeTransaction" class="block text-gray-700 font-bold mb-2">Tipo de Transacción:</label>
-      <input type="text" id="typeTransaction" formControlName="typeTransaction" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-      <div *ngIf="transactionForm.get('typeTransaction')?.invalid && transactionForm.get('typeTransaction')?.touched" class="text-red-600">{{ getErrorMessage('typeTransaction') }}</div>
-    </div>
-    <div class="mb-4">
-      <label for="idCompetition" class="block text-gray-700 font-bold mb-2">Concurso:</label>
-      <select id="idCompetition" formControlName="idCompetition" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-        <option *ngFor="let competition of competitions" [value]="competition.id">{{ competition.Tipo_Concurso }}</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label for="idGroup" class="block text-gray-700 font-bold mb-2">Grupo:</label>
-      <select formControlName="idGroup" id="idGroup" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-        <option *ngFor="let group of groups" [value]="group.Id_Grupo">{{ group.Nombre_Grupo }}</option>
-      </select>
-      <div *ngIf="transactionForm.get('idGroup')?.invalid && transactionForm.get('idGroup')?.touched" class="text-red-600">{{ getErrorMessage('idGroup') }}</div>
-    </div>
-    <div class="mb-4">
-      <label for="total" class="block text-gray-700 font-bold mb-2">Total:</label>
-      <input type="number" id="total" formControlName="total" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-      <div *ngIf="transactionForm.get('total')?.invalid && transactionForm.get('total')?.touched" class="text-red-600">{{ getErrorMessage('total') }}</div>
-    </div>
-    <div class="mb-4">
-      <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
-      <textarea type="text" id="description" formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
-      <div *ngIf="transactionForm.get('description')?.invalid && transactionForm.get('description')?.touched" class="text-red-600">{{ getErrorMessage('description') }}</div>
+    <div class="flex flex-wrap -mx-2">
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <label for="amount" class="block text-gray-700 font-bold mb-2">Monto:</label>
+        <input type="number" id="amount" formControlName="amount" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched" class="text-red-600">{{ getErrorMessage('amount') }}</div>
+      </div>
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <label for="typeRegister" class="block text-gray-700 font-bold mb-2">Tipo de Registro:</label>
+        <input type="text" id="typeRegister" formControlName="typeRegister" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="transactionForm.get('typeRegister')?.invalid && transactionForm.get('typeRegister')?.touched" class="text-red-600">{{ getErrorMessage('typeRegister') }}</div>
+      </div>
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <label for="typeTransaction" class="block text-gray-700 font-bold mb-2">Tipo de Transacción:</label>
+        <input type="text" id="typeTransaction" formControlName="typeTransaction" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="transactionForm.get('typeTransaction')?.invalid && transactionForm.get('typeTransaction')?.touched" class="text-red-600">{{ getErrorMessage('typeTransaction') }}</div>
+      </div>
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <label for="idCompetition" class="block text-gray-700 font-bold mb-2">Concurso:</label>
+        <select id="idCompetition" formControlName="idCompetition" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option *ngFor="let competition of competitions" [value]="competition.id">{{ competition.Tipo_Concurso }}</option>
+        </select>
+      </div>
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <label for="idGroup" class="block text-gray-700 font-bold mb-2">Grupo:</label>
+        <select formControlName="idGroup" id="idGroup" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <option *ngFor="let group of groups" [value]="group.Id_Grupo">{{ group.Nombre_Grupo }}</option>
+        </select>
+        <div *ngIf="transactionForm.get('idGroup')?.invalid && transactionForm.get('idGroup')?.touched" class="text-red-600">{{ getErrorMessage('idGroup') }}</div>
+      </div>
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <label for="total" class="block text-gray-700 font-bold mb-2">Total:</label>
+        <input type="number" id="total" formControlName="total" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="transactionForm.get('total')?.invalid && transactionForm.get('total')?.touched" class="text-red-600">{{ getErrorMessage('total') }}</div>
+      </div>
+      <div class="w-full px-2 mb-4">
+        <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
+        <textarea type="text" id="description" formControlName="description" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+        <div *ngIf="transactionForm.get('description')?.invalid && transactionForm.get('description')?.touched" class="text-red-600">{{ getErrorMessage('description') }}</div>
+      </div>
     </div>
     <button type="submit" [disabled]="transactionForm.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Guardar</button>
   </form>
