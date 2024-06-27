@@ -20,7 +20,7 @@
       </div>
       <div class="mb-4">        
         <label for="Club" class="block text-gray-700 font-bold mb-2">Club:</label>          
-          <select formControlName="Club" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <select formControlName="idClub" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
             <option *ngFor="let club of clubsData" [value]="club.Nombre">{{ club.Nombre }}</option>
           </select>
       </div>

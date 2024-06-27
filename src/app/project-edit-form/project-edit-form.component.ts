@@ -7,8 +7,9 @@ import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/fo
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { ClubsService } from '../services/api_serivices/clubs/clubs.service';
+import { IProjects } from '../interfaces/projects.interface';
 
-export interface IProjectData {
+export interface IProjectDatat {
   id?: string;
   name: string;
   description: string;
@@ -33,7 +34,7 @@ export class ProjectEditFormComponent implements OnInit {
 
   constructor(
     private reference: MatDialogRef<ProjectEditFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IProjectData  ) {
+    @Inject(MAT_DIALOG_DATA) public data: IProjects  ) {
     this.title = data && data.id ? "EDITAR" : "NUEVO";
   }
 
@@ -47,9 +48,9 @@ export class ProjectEditFormComponent implements OnInit {
       id: new FormControl(this.data?.id),
       name: new FormControl(this.data?.name, Validators.required),
       description: new FormControl(this.data?.description, Validators.required),
-      startDate: new FormControl(this.data?.dateStart, Validators.required),
-      endDate: new FormControl(this.data?.dateEnd, Validators.required),
-      Club: new FormControl(this.data?.Club, Validators.required),
+      startDate: new FormControl(this.data?.startDate, Validators.required),
+      endDate: new FormControl(this.data?.endDate, Validators.required),
+      idClub: new FormControl(this.data?.idClub, Validators.required),
     });
   }
 
